@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symmetrical Marketing Studio | Branding y Soluciones Digitales</title>
+  <meta name="description" content="Agencia creativa especializada en diseño corporativo, e-commerce, apps personalizadas e identidad visual.">
+  <meta name="keywords" content="marketing, branding, diseño web, ecommerce, identidad visual, symmetrical">
+  <meta name="author" content="Symmetrical Studio" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🔷 Header -->
+  <header>
+    <div class="logo">
+      <img src="assets/Symmetrical.png" alt="Logo Symmetrical" class="logo-img" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#soluciones">Soluciones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- 🔷 Sección Servicios -->
+  <section id="servicios" class="service-box">
+    <div class="service">
+      <h3>Diseño publicitario</h3>
+      <p>Identidad visual, logotipos,y branding completo.</p>
+    </div>
+    <div class="service">
+      <h3>Desarrollo web</h3>
+      <p>Tiendas online,paginas webs y aplicaciones.</p>
+    </div>
+    <div class="service">
+      <h3>Apps Personalizadas</h3>
+      <p>Soluciones digitales a medida para tu negocio.</p>
+    </div>
+  </section>
+
+  <!-- 🔷 Sección Soluciones -->
+  <section id="soluciones" class="service-box">
+    <div class="service">
+      <h3>Imagen y Contenido</h3>
+      <p>Producción multimedia, fotografía, video y diseño gráfico.</p>
+    </div>
+    <div class="service">
+      <h3>Identidad Digital</h3>
+      <p>Presencia en redes, estrategia visual y posicionamiento.</p>
+    </div>
+  </section>
+
+<section id="contacto" class="service-box">
+  <div class="service">
+    <h3>Contáctanos</h3>
+    <p>¿Tienes un proyecto? Escríbenos y lo hacemos realidad.</p>
+
+    <form action=https://formspree.io/f/meorvoog method="POST" class="contact-form">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="email" name="email" placeholder="Tu correo" required />
+      <textarea name="mensaje" placeholder="Cuéntanos tu idea..." rows="5" required></textarea>
+      <button type="submit" class="btn">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+  </section>
+
+  <!-- 🔷 Footer -->
+  <footer>
+    <p>&copy; 2025 Symmetrical Studio. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- 🔷 JS para menú móvil -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav ul');
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      nav.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  </script>
+
+</a>
+<a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <img src="assets/Whatsapp.png" alt="WhatsApp" />
+</a>
+</body>
+</html>
