@@ -38,62 +38,88 @@
   </header>
 
   <!-- 🔷 Sección Servicios -->
-<section class="servicio">
-  <!-- Bloque 1 -->
-  <div class="card">
-    <h3>Diseño publicitario</h3>
-    <p>Identidad visual, logotipos, y branding completo.</p>
-  </div>
+  <section id="servicios" class="service-box">
+    <div class="separador">Servicios</div>
 
-  <!-- Texto entre bloques -->
-  <div class="separador">Servicios</div>
+    <a href="#diseno" class="service">
+      <h3>Diseño publicitario</h3>
+      <p>Identidad visual, logotipos y branding completo.</p>
+    </a>
 
-  <!-- Bloque 2 -->
-  <div class="card">
-    <h3>Desarrollo web</h3>
-    <p>Tiendas online, páginas webs y aplicaciones.</p>
-  </div>
+    <a href="#desarrollo" class="service">
+      <h3>Desarrollo web</h3>
+      <p>Tiendas online, páginas webs y aplicaciones.</p>
+    </a>
 
-  <!-- Texto entre bloques -->
-  <div class="separador">Soluciones</div>
-
-  <!-- Bloque 3 -->
-  <div class="card">
-    <h3>Apps Personalizadas</h3>
-    <p>Soluciones digitales a medida para tu negocio.</p>
-  </div>
-
-  <!-- Texto final -->
-  <div class="separador">Contacto</div>
-</section>
+    <a href="#apps" class="service">
+      <h3>Apps Personalizadas</h3>
+      <p>Soluciones digitales a medida para tu negocio.</p>
+    </a>
+  </section>
 
   <!-- 🔷 Sección Soluciones -->
   <section id="soluciones" class="service-box">
-    <div class="service">
+    <div class="separador">Soluciones</div>
+
+    <a href="#imagen" class="service">
       <h3>Imagen y Contenido</h3>
       <p>Producción multimedia, fotografía, video y diseño gráfico.</p>
-    </div>
-    <div class="service">
+    </a>
+
+    <a href="#identidad" class="service">
       <h3>Identidad Digital</h3>
       <p>Presencia en redes, estrategia visual y posicionamiento.</p>
+    </a>
+  </section>
+
+  <!-- 🔷 Sección Contacto -->
+  <section id="contacto" class="service-box">
+    <div class="separador">Contacto</div>
+
+    <div class="service">
+      <h3>Contáctanos</h3>
+      <p>¿Tienes un proyecto? Escríbenos y lo hacemos realidad.</p>
+
+      <form action="https://formspree.io/f/meorvoog" method="POST" class="contact-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <textarea name="mensaje" placeholder="Cuéntanos tu idea..." rows="5" required></textarea>
+        <button type="submit" class="btn">Enviar mensaje</button>
+      </form>
     </div>
   </section>
+<!-- 🔷 Sección interna: Diseño publicitario -->
+<section id="diseno" class="portfolio-section">
+  <h2>Diseño publicitario</h2>
+  <p>Explora algunos de nuestros proyectos de identidad visual, logotipos y branding.</p>
 
-<section id="contacto" class="service-box">
-  <div class="service">
-    <h3>Contáctanos</h3>
-    <p>¿Tienes un proyecto? Escríbenos y lo hacemos realidad.</p>
-
-    <form action=https://formspree.io/f/meorvoog method="POST" class="contact-form">
-      <input type="text" name="nombre" placeholder="Tu nombre" required />
-      <input type="email" name="email" placeholder="Tu correo" required />
-      <textarea name="mensaje" placeholder="Cuéntanos tu idea..." rows="5" required></textarea>
-      <button type="submit" class="btn">Enviar mensaje</button>
-    </form>
-  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <img src="assets/Flovi.png" alt="Flovi.png" />
+      <h4>Pasteleria Flovi</h4>
+      <p>Diseño de logotipo para el restaurante Flovi.</p>
+    </div>
 </section>
 
-  </section>
+<section id="imagen" class="portfolio-section">
+  <h2>Imagen y Contenido</h2>
+  <p>Producción multimedia, fotografía, video y diseño gráfico para el restaurante Flovi.</p>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item">
+      <img src="assets/Carne a la llanera.jpg" alt="Publicidad Flovi 1" />
+      <h4>“Sabor que se siente en familia.”</h4>
+      <p>Banner promocional para redes sociales destacando productos artesanales.</p>
+    </div>
+
+    <div class="portfolio-item">
+      <img src="assets/Campaña.jpg" alt="Publicidad Flovi 2" />
+      <h4>Menú visual</h4>
+      <p>Diseño gráfico del menú digital con fotografía de productos y estilo cálido.</p>
+    </div>
+  </div>
+</section>
 
   <!-- 🔷 Footer -->
   <footer>
@@ -120,9 +146,9 @@
     });
   </script>
 
-</a>
-<a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-  <img src="assets/Whatsapp.png" alt="WhatsApp" />
-</a>
+  <!-- 🔷 WhatsApp flotante -->
+  <a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <img src="assets/Whatsapp.png" alt="WhatsApp" />
+  </a>
 </body>
 </html>
