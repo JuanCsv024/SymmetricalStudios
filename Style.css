@@ -721,3 +721,26 @@ footer p {
     width: 100%;
   }
 }
+/* ==========================================
+   🛡️ FIX NAVEGADOR SAMSUNG & MODO OSCURO
+   ========================================== */
+
+/* 1. Forzar color real del botón principal */
+.btn-primary, 
+button[type="submit"],
+.hero-buttons .btn:first-child {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  -webkit-appearance: none;
+}
+
+/* 2. Prevenir que Samsung invierta colores */
+:root {
+  color-scheme: dark;
+}
+
+/* 3. Ajuste de fuentes y contrastes */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
