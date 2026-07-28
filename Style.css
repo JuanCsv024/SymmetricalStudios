@@ -641,3 +641,83 @@ footer p {
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
+/* ==========================================
+   📱 RESPONSIVE DESIGN (Pantallas, TV, Tablets y Celulares)
+   ========================================== */
+
+/* 1. TELEVISORES Y PANTALLAS GIGANTES (A partir de 1440px) */
+@media (min-width: 1440px) {
+  body {
+    font-size: 18px; /* Escala de texto más grande y cómoda para ver de lejos */
+  }
+
+  .hero-content, 
+  .service-box, 
+  .contact-card {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* 2. TABLETS Y PORTÁTILES PEQUEÑOS (Entre 769px y 1024px) */
+@media (max-width: 1024px) {
+  .sub-services-grid {
+    grid-template-columns: repeat(2, 1fr); /* Pasa a 2 columnas en tablets */
+    gap: 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* 3. CELULARES (Móviles de 768px para abajo) */
+@media (max-width: 768px) {
+  header {
+    padding: 0.8rem 1.2rem;
+  }
+
+  /* Ajuste de Logo y Gorrito para que no saturen la barra superior */
+  .logo-img {
+    max-width: 130px;
+    height: auto;
+  }
+
+  #gorrito-navidad-flotante {
+    width: 32px;
+    top: -8px;
+    left: -12px;
+  }
+
+  /* Hero / Inicio */
+  .hero h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* Botones uno encima de otro */
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Tarjetas de Servicios: Se ordenan en 1 sola columna vertical */
+  .sub-services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  /* Sección de Contacto */
+  .contact-card {
+    padding: 1.5rem 1rem;
+    width: 100%;
+  }
+}
