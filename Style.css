@@ -1,0 +1,643 @@
+/* 🔷 Reset y Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #050505;
+  color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔷 Aura de luz ambiental */
+body::before {
+  content: '';
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 🔷 Estilo elegante al seleccionar texto */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* 🔷 Header */
+header {
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.lo, .logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img, .logo-img {
+  width: 250px;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover, .logo-img:hover {
+  transform: scale(1.03);
+}
+
+/* 🔷 Navegación y Animación de Enlaces */
+nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+nav a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateX(-50%);
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* 🔷 Menú Móvil Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* 🔷 Separadores */
+.separador {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 45px 0 25px 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.separador::before,
+.separador::after {
+  content: "";
+  display: inline-block;
+  width: 35px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 15px;
+  vertical-align: middle;
+}
+
+/* 🔷 Contenedor Flex para Tarjetas */
+.service-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 1rem 2rem 2rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 🔷 Tarjetas Liquid Glass con Animación Hover */
+.service {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 2.2rem 1.8rem;
+  border-radius: 18px;
+  width: 330px;
+  max-width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.service:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.06);
+}
+
+.service h3 {
+  margin-bottom: 0.7rem;
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.service p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.92rem;
+}
+
+/* 🔷 Tarjeta de Contacto */
+.contact-card {
+  width: 480px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+/* 🔷 Botón "Enviar mensaje" */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.35s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.btn:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* 🔷 Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #020202;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: auto;
+}
+
+/* 🔷 WhatsApp Flotante */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.12) rotate(6deg);
+}
+
+/* 🔷 Adaptativo Móvil */
+@media (max-width: 768px) {
+  header { padding: 0 1.5rem; }
+  .menu-toggle { display: flex; }
+  nav ul {
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background-color: #070707;
+    padding-top: 5rem;
+    text-align: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  nav ul.active { transform: translateY(0); }
+  nav ul li { margin: 1.2rem 0; }
+  nav ul li a { font-size: 1.3rem; }
+  .service, .contact-card { width: 100%; }
+}
+/* 🔷 Quitar recuadro al arrastrar/seleccionar */
+body::before {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 🔷 Estilo elegante cuando seleccione texto */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+/* 🔷 Hero Section */
+.hero {
+  min-height: calc(100vh - 85px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #000000;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #ffffff;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 🔷 Estilos de Pestañas de Servicios */
+.services-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+/* 🔷 Sub-tarjetas de Servicios */
+.sub-services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.sub-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.8rem;
+  border-radius: 16px;
+  flex: 1;
+  min-width: 260px;
+  max-width: 310px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.sub-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sub-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+}
+
+.sub-card p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.5rem;
+}
+
+.btn-sub {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 4px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+.btn-sub:hover {
+  border-color: #ffffff;
+  padding-left: 5px;
+}
+/* 🔷 Forzar que las pestañas reciban el clic */
+.services-tabs {
+  position: relative;
+  z-index: 10;
+}
+
+.tab-btn {
+  position: relative;
+  z-index: 11;
+  cursor: pointer;
+}
+/* 🔷 Arreglo de capas para que los botones reciban el clic siempre */
+.service-box {
+  position: relative;
+  z-index: 10;
+}
+
+.services-tabs {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.tab-btn {
+  position: relative;
+  z-index: 30;
+  cursor: pointer;
+  pointer-events: auto;
+}
+/* 🔷 Corrección de Pestañas y Visibilidad */
+.tab-content {
+  display: none !important;
+  width: 100%;
+}
+
+.tab-content.active {
+  display: block !important;
+}
+
+/* 🔷 Ajuste de la cuadrícula para que no se monten las tarjetas */
+.sub-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto 0 auto;
+}
+
+.sub-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.8rem;
+  border-radius: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* 🔷 Limpieza del Footer */
+footer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Gorrito Enganchado al Logo (Sin descolocar el header) */
+.lo.navidad-wrapper {
+  position: relative;
+}
+
+#gorrito-navidad-flotante {
+  position: absolute;
+  top: -1px;         /*  Ajustado para que descanse sobre la punta del marco */
+  left: -20px;        /*  Movido a la izquierda para que cuelgue hacia afuera */
+  width: 45px;
+  height: auto;
+  z-index: 1000;
+  /* 🔄 scaleX(-1) VOLTEA la imagen horizontalmente (efecto espejo) */
+  transform: scaleX(-1) rotate(15deg); 
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}

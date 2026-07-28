@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symmetrical Studios | Soluciones Digitales</title>
+  <meta name="description" content="Agencia especializada en desarrollo web y apps personalizadas.">
+  <meta name="keywords" content="desarrollo web, ecommerce, apps personalizadas, symmetrical">
+  <meta name="author" content="Symmetrical Studio" />
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="lo navidad-wrapper">
+      <img src="assets/Symmetricalstudios.png" alt="logo" class="logo-img" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- 🔷 Hero Section / Pantalla Principal -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">Symmetrical Studios</span>
+      <h1>Transformamos tus ideas en <span>experiencias digitales</span></h1>
+      <p>Diseñamos y desarrollamos páginas web, aplicaciones personalizadas y software a la medida para potenciar tu marca y escalar tu negocio.</p>
+      <div class="hero-buttons">
+        <a href="#contacto" class="btn btn-primary">Iniciar un proyecto</a>
+        <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔷 Sección Servicios -->
+  <section id="servicios" class="service-box">
+    <div class="separador">Nuestros Servicios</div>
+
+    <!-- Botones de selección -->
+    <div class="services-tabs">
+      <button class="tab-btn active">Desarrollo Web</button>
+      <button class="tab-btn">Apps Personalizadas</button>
+    </div>
+
+    <!-- Contenido 1: Desarrollo Web -->
+    <div id="web" class="tab-content active">
+      <h3>Soluciones Web a Medida</h3>
+      <p class="tab-subtitle">Elige el tipo de desarrollo que necesita tu negocio:</p>
+
+      <div class="sub-services-grid">
+        <div class="sub-card">
+          <h4>🛒 E-commerce</h4>
+          <p>Tiendas virtuales optimizadas para ventas, pasarela de pagos integrada y gestión de inventario.</p>
+          <a href="#contacto" class="btn-sub">Cotizar E-commerce</a>
+        </div>
+
+        <div class="sub-card">
+          <h4>📊 Dashboards & Admin Panels</h4>
+          <p>Sistemas internos para controlar métricas, clientes, ventas y reportes en tiempo real.</p>
+          <a href="#contacto" class="btn-sub">Cotizar Dashboard</a>
+        </div>
+
+        <div class="sub-card">
+          <h4>⚡ Landing Pages & Sitios Corporativos</h4>
+          <p>Páginas de alta velocidad, optimizadas para SEO y enfocadas en captar clientes de una.</p>
+          <a href="#contacto" class="btn-sub">Cotizar Sitio Web</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenido 2: Apps Personalizadas -->
+    <div id="apps" class="tab-content">
+      <h3>Aplicaciones Móviles a Medida</h3>
+      <p class="tab-subtitle">Desarrollamos aplicaciones nativas y multiplataforma (iOS & Android) para tu negocio:</p>
+
+      <div class="sub-services-grid">
+        <div class="sub-card">
+          <h4>🛵 Apps de Domicilios & Delivery</h4>
+          <p>Sistemas completos con rastreo en mapa a tiempo real, gestión de repartidores, catálogo y pagos en línea.</p>
+          <a href="#contacto" class="btn-sub">Cotizar App Delivery</a>
+        </div>
+
+        <div class="sub-card">
+          <h4>💬 Apps de Chat & Mensajería</h4>
+          <p>Plataformas de texto e interacción en vivo, notificaciones push, envío de archivos y chats privados o grupales.</p>
+          <a href="#contacto" class="btn-sub">Cotizar App Mensajería</a>
+        </div>
+
+        <div class="sub-card">
+          <h4>📲 Plataformas de Servicios & Citas</h4>
+          <p>Apps para reserva de citas, gestión de clientes, catálogos interactivos y membresías directamente desde el celular.</p>
+          <a href="#contacto" class="btn-sub">Cotizar App de Servicios</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔷 Sección Contacto -->
+  <section id="contacto" class="service-box">
+    <div class="separador">Contacto</div>
+
+    <div class="service contact-card">
+      <h3>Contáctanos</h3>
+      <p>¿Tienes un proyecto? Escríbenos y lo hacemos realidad.</p>
+
+      <form action="https://formspree.io/f/mvgwdgpv" method="POST" class="contact-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <textarea name="mensaje" placeholder="Cuéntanos tu idea..." rows="4" required></textarea>
+        <button type="submit" class="btn">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Symmetrical Studios. Todos los derechos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <img src="assets/Whatsapp.png" alt="WhatsApp" />
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
