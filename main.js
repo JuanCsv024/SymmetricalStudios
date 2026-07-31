@@ -36,12 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  //  3. AUTOMATIZACIÓN DE DICIEMBRE (Gorrito enganchado al logo + Nieve) 
+  // 🔷 3. AUTOMATIZACIÓN DE DICIEMBRE (Gorrito enganchado al logo + Nieve) 
   const hoy = new Date();
   const mes = hoy.getMonth(); // 11 es Diciembre
 
   // Para probarlo HOY cambias (mes === 11) por (true)
-  if (mes === 11  ) {
+  if (mes === 11) {
     
     // Meter el gorrito DENTRO del contenedor del logo para que no flote suelto ni baje solo
     const logoWrapper = document.querySelector('.navidad-wrapper');
@@ -108,4 +108,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawSnow();
   }
+
+  // 🔷 4. ANIMACIONES AL HACER SCROLL (INTERSECTION OBSERVER)
+  const elementosAnimados = document.querySelectorAll('.reveal');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      } else {
+        // Remueve la clase al salir de pantalla para repetir la animación al subir/bajar
+        entry.target.classList.remove('active');
+      }
+    });
+  }, observerOptions);
+
+  elementosAnimados.forEach(el => observer.observe(el));
+
 });

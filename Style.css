@@ -744,3 +744,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ==========================================
+   ANIMACIONES DE SCROLL (REVEAL)
+   ========================================== */
+
+/* Estado inicial: oculto y desplazado hacia abajo */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* Estado activo: cuando entra en pantalla se muestra */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retardos para que las tarjetas salgan en cascada (una tras otra) */
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.30s; }
+.delay-3 { transition-delay: 0.45s; }
