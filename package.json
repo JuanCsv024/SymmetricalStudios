@@ -1,0 +1,12 @@
+{
+  "name": "symmetrical-studios",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^8.2.0"
+  }
+}
