@@ -194,9 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enlaces de Pago de Mercado Pago según el valor seleccionado (data-value "1", "2", "3")
   const PLAN_LINKS = {
-    '1': 'https://mpago.li/1FTESnN',
-    '2': 'https://mpago.li/1FTESnN',
-    '3': 'https://mpago.li/1FTESnN'
+    '1': 'link.mercadopago.com.co/vaultbasic',
+    '2': 'https://mpago.li/2jtS4FB',
+    '3': 'https://mpago.li/2eF4Zhs'
   };
 
   // Abrir modal
