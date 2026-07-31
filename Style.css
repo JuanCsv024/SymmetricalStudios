@@ -169,7 +169,7 @@ nav a:hover::after {
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* 🔷 Tarjetas Liquid Glass con Animación Hover */
@@ -284,17 +284,6 @@ nav a:hover::after {
   transform: translateY(0);
 }
 
-/* 🔷 Footer */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: #020202;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin-top: auto;
-}
-
 /* 🔷 WhatsApp Flotante */
 .whatsapp-float {
   position: fixed;
@@ -317,7 +306,7 @@ footer {
   transform: scale(1.12) rotate(6deg);
 }
 
-/* 🔷 Adaptativo Móvil */
+/* 🔷 Adaptativo Móvil Basico */
 @media (max-width: 768px) {
   header { padding: 0 1.5rem; }
   .menu-toggle { display: flex; }
@@ -338,17 +327,7 @@ footer {
   nav ul li a { font-size: 1.3rem; }
   .service, .contact-card { width: 100%; }
 }
-/* 🔷 Quitar recuadro al arrastrar/seleccionar */
-body::before {
-  user-select: none;
-  -webkit-user-select: none;
-}
 
-/* 🔷 Estilo elegante cuando seleccione texto */
-::selection {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-}
 /* 🔷 Hero Section */
 .hero {
   min-height: calc(100vh - 85px);
@@ -451,6 +430,9 @@ body::before {
   gap: 1rem;
   width: 100%;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
 }
 
 .tab-btn {
@@ -463,6 +445,9 @@ body::before {
   cursor: pointer;
   font-family: inherit;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
 }
 
 .tab-btn:hover, .tab-btn.active {
@@ -472,20 +457,15 @@ body::before {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
+/* 🔷 Pestañas Ajustadas para compatibilidad con Scroll Reveal */
 .tab-content {
   display: none;
   width: 100%;
   text-align: center;
-  animation: fadeIn 0.4s ease;
 }
 
 .tab-content.active {
   display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .tab-subtitle {
@@ -494,12 +474,14 @@ body::before {
   font-size: 0.95rem;
 }
 
-/* 🔷 Sub-tarjetas de Servicios */
+/* 🔷 Sub-tarjetas de Servicios (Grid Layout) */
 .sub-services-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto 0 auto;
 }
 
 .sub-card {
@@ -507,9 +489,6 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.8rem;
   border-radius: 16px;
-  flex: 1;
-  min-width: 260px;
-  max-width: 310px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -550,65 +529,7 @@ body::before {
   border-color: #ffffff;
   padding-left: 5px;
 }
-/* 🔷 Forzar que las pestañas reciban el clic */
-.services-tabs {
-  position: relative;
-  z-index: 10;
-}
 
-.tab-btn {
-  position: relative;
-  z-index: 11;
-  cursor: pointer;
-}
-/* 🔷 Arreglo de capas para que los botones reciban el clic siempre */
-.service-box {
-  position: relative;
-  z-index: 10;
-}
-
-.services-tabs {
-  position: relative;
-  z-index: 20;
-  pointer-events: auto;
-}
-
-.tab-btn {
-  position: relative;
-  z-index: 30;
-  cursor: pointer;
-  pointer-events: auto;
-}
-/* 🔷 Corrección de Pestañas y Visibilidad */
-.tab-content {
-  display: none !important;
-  width: 100%;
-}
-
-.tab-content.active {
-  display: block !important;
-}
-
-/* 🔷 Ajuste de la cuadrícula para que no se monten las tarjetas */
-.sub-services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1100px;
-  margin: 2rem auto 0 auto;
-}
-
-.sub-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.8rem;
-  border-radius: 16px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 /* 🔷 Limpieza del Footer */
 footer {
   background: transparent !important;
@@ -616,6 +537,7 @@ footer {
   box-shadow: none !important;
   padding: 2rem 0;
   text-align: center;
+  margin-top: auto;
 }
 
 footer p {
@@ -631,16 +553,16 @@ footer p {
 
 #gorrito-navidad-flotante {
   position: absolute;
-  top: -1px;         /*  Ajustado para que descanse sobre la punta del marco */
-  left: -20px;        /*  Movido a la izquierda para que cuelgue hacia afuera */
+  top: -1px;
+  left: -20px;
   width: 45px;
   height: auto;
   z-index: 1000;
-  /* 🔄 scaleX(-1) VOLTEA la imagen horizontalmente (efecto espejo) */
   transform: scaleX(-1) rotate(15deg); 
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
+
 /* ==========================================
    📱 RESPONSIVE DESIGN (Pantallas, TV, Tablets y Celulares)
    ========================================== */
@@ -648,7 +570,7 @@ footer p {
 /* 1. TELEVISORES Y PANTALLAS GIGANTES (A partir de 1440px) */
 @media (min-width: 1440px) {
   body {
-    font-size: 18px; /* Escala de texto más grande y cómoda para ver de lejos */
+    font-size: 18px;
   }
 
   .hero-content, 
@@ -662,7 +584,7 @@ footer p {
 /* 2. TABLETS Y PORTÁTILES PEQUEÑOS (Entre 769px y 1024px) */
 @media (max-width: 1024px) {
   .sub-services-grid {
-    grid-template-columns: repeat(2, 1fr); /* Pasa a 2 columnas en tablets */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
   
@@ -677,7 +599,6 @@ footer p {
     padding: 0.8rem 1.2rem;
   }
 
-  /* Ajuste de Logo y Gorrito para que no saturen la barra superior */
   .logo-img {
     max-width: 130px;
     height: auto;
@@ -689,7 +610,6 @@ footer p {
     left: -12px;
   }
 
-  /* Hero / Inicio */
   .hero h1 {
     font-size: 1.8rem;
     line-height: 1.2;
@@ -700,7 +620,7 @@ footer p {
   }
 
   .hero-buttons {
-    flex-direction: column; /* Botones uno encima de otro */
+    flex-direction: column;
     width: 100%;
   }
 
@@ -709,23 +629,21 @@ footer p {
     text-align: center;
   }
 
-  /* Tarjetas de Servicios: Se ordenan en 1 sola columna vertical */
   .sub-services-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
 
-  /* Sección de Contacto */
   .contact-card {
     padding: 1.5rem 1rem;
     width: 100%;
   }
 }
+
 /* ==========================================
    🛡️ FIX NAVEGADOR SAMSUNG & MODO OSCURO
    ========================================== */
 
-/* 1. Forzar color real del botón principal */
 .btn-primary, 
 button[type="submit"],
 .hero-buttons .btn:first-child {
@@ -734,19 +652,17 @@ button[type="submit"],
   -webkit-appearance: none;
 }
 
-/* 2. Prevenir que Samsung invierta colores */
 :root {
   color-scheme: dark;
 }
 
-/* 3. Ajuste de fuentes y contrastes */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================
-   ANIMACIONES DE SCROLL (REVEAL)
+   ✨ ANIMACIONES DE SCROLL (REVEAL)
    ========================================== */
 
 /* Estado inicial: oculto y desplazado hacia abajo */
