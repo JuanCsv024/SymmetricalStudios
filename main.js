@@ -40,10 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hoy = new Date();
   const mes = hoy.getMonth(); // 11 es Diciembre
 
-  // Para probarlo HOY cambias (mes === 11) por (true)
   if (mes === 11) {
-    
-    // Meter el gorrito DENTRO del contenedor del logo para que no flote suelto ni baje solo
     const logoWrapper = document.querySelector('.navidad-wrapper');
     if (logoWrapper && !document.getElementById('gorrito-navidad-flotante')) {
       const gorrito = document.createElement('img');
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
       logoWrapper.appendChild(gorrito);
     }
 
-    // Efecto Nieve
     const canvas = document.createElement('canvas');
     canvas.id = 'snow-canvas';
     document.body.appendChild(canvas);
@@ -123,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
       } else {
-        // Remueve la clase al salir de pantalla para repetir la animación al subir/bajar
         entry.target.classList.remove('active');
       }
     });
@@ -131,4 +126,151 @@ document.addEventListener('DOMContentLoaded', () => {
 
   elementosAnimados.forEach(el => observer.observe(el));
 
+  // 🔷 5. ANIMACIÓN DE RED DE DATOS (SYMMETRICAL VAULT CANVAS)
+  const vaultCanvas = document.getElementById('vault-canvas');
+  if (vaultCanvas) {
+    const vCtx = vaultCanvas.getContext('2d');
+    let vWidth = (vaultCanvas.width = vaultCanvas.offsetWidth);
+    let vHeight = (vaultCanvas.height = vaultCanvas.offsetHeight);
+
+    window.addEventListener('resize', () => {
+      if (!vaultCanvas) return;
+      vWidth = vaultCanvas.width = vaultCanvas.offsetWidth;
+      vHeight = vaultCanvas.height = vaultCanvas.offsetHeight;
+    });
+
+    const nodes = Array.from({ length: 35 }, () => ({
+      x: Math.random() * vWidth,
+      y: Math.random() * vHeight,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      radius: Math.random() * 2 + 1
+    }));
+
+    function drawVaultNodes() {
+      vCtx.clearRect(0, 0, vWidth, vHeight);
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            vCtx.beginPath();
+            vCtx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / 110 * 0.8})`;
+            vCtx.lineWidth = 0.6;
+            vCtx.moveTo(nodes[i].x, nodes[i].y);
+            vCtx.lineTo(nodes[j].x, nodes[j].y);
+            vCtx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(node => {
+        vCtx.beginPath();
+        vCtx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        vCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        vCtx.fill();
+
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x < 0 || node.x > vWidth) node.vx *= -1;
+        if (node.y < 0 || node.y > vHeight) node.vy *= -1;
+      });
+
+      requestAnimationFrame(drawVaultNodes);
+    }
+
+    drawVaultNodes();
+  }
+
+  // 🔷 6. CONTROL DEL MODAL Y FORMULARIO DE SYMMETRICAL VAULT
+  const openModalBtn = document.getElementById('open-vault-modal');
+  const closeModalBtn = document.getElementById('close-vault-modal');
+  const modal = document.getElementById('vault-modal');
+  const checkoutForm = document.getElementById('vault-checkout-form');
+
+  // Enlaces de Pago de Mercado Pago según el valor seleccionado (data-value "1", "2", "3")
+  const PLAN_LINKS = {
+    '1': 'https://mpago.li/1FTESnN',
+    '2': 'https://mpago.li/1FTESnN',
+    '3': 'https://mpago.li/1FTESnN'
+  };
+
+  // Abrir modal
+  if (openModalBtn && modal) {
+    openModalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('active');
+    });
+  }
+
+  // Cerrar modal al dar clic a la X
+  if (closeModalBtn && modal) {
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  }
+
+  // Cerrar modal al presionar fuera de la ventana
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  }
+
+  // Captura de datos y redirección a la pasarela de pagos
+  if (checkoutForm) {
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('vault-name').value;
+      const email = document.getElementById('vault-email').value;
+      const telefono = document.getElementById('vault-phone').value;
+      
+      // ✅ CORREGIDO: Se obtiene el valor del input hidden correspondiente
+      const planInput = document.getElementById('input-plan-hidden');
+      const planSeleccionado = planInput ? planInput.value : '';
+
+      console.log('Datos Capturados:', { nombre, email, telefono, planSeleccionado });
+
+      // Redireccionar al link del plan correspondiente (o a uno por defecto)
+      const targetUrl = PLAN_LINKS[planSeleccionado] || 'https://mpago.li/1FTESnN';
+      window.location.href = targetUrl;
+    });
+  }
+
+  // Lógica para abrir/cerrar el dropdown personalizado
+  const dropdown = document.getElementById('dropdown-planes');
+  if (dropdown) {
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const items = dropdown.querySelectorAll('.dropdown-item');
+    const selectedSpan = document.getElementById('selected-plan');
+    const hiddenInput = document.getElementById('input-plan-hidden');
+
+    if (trigger) {
+      trigger.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+      });
+    }
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        if (selectedSpan) selectedSpan.textContent = item.textContent;
+        if (hiddenInput) hiddenInput.value = item.dataset.value;
+        dropdown.classList.remove('open');
+      });
+    });
+
+    // Cerrar si hace clic afuera
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  }
 });

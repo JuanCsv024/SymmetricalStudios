@@ -29,6 +29,12 @@
     </div>
     <nav>
       <ul>
+        <li>
+          <a href="#vault" class="nav-vault">
+            <img src="assets/vault.png" alt="Symmetrical Vault" class="vault-icon">
+            <span>SYMMETRICAL VAULT</span>
+          </a>
+        </li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -113,8 +119,51 @@
       </div>
     </div>
   </section>
+<!-- 🔷 SECCIÓN SYMMETRICAL VAULT -->
+  <section id="vault" class="vault-section reveal">
+    <!-- Canvas para animación de nodos de datos en la nube -->
+    <canvas id="vault-canvas"></canvas>
 
-  <!-- 🔷 Sección Contacto -->
+    <div class="vault-container">
+      <div class="badge">NUEVO // NEXT-GEN STORAGE</div>
+      
+      <div class="vault-header">
+        <img src="assets/vault.png" alt="Symmetrical Vault Logo" class="vault-main-logo">
+        <h2>Symmetrical <span>Vault</span></h2>
+      </div>
+
+      <p class="vault-description">
+        La evolución del almacenamiento inteligente. Potenciado de la mano con <strong>Symmetrical Cloud</strong>, nuestra Vault integra funciones exclusivas de procesamiento, velocidad y control que redefinen la forma de gestionar tus activos en la nube.
+      </p>
+
+      <!-- Grid Limpio de Características -->
+      <div class="vault-features">
+        <div class="vault-card">
+          <h3><span class="vault-card-icon">⚡</span> Symmetrical Cloud Sync</h3>
+          <p>Integración nativa para la transformación, entrega ultra rápida y optimización de medios al vuelo.</p>
+        </div>
+
+        <div class="vault-card">
+          <h3><span class="vault-card-icon">🔐</span> Cloud de Alta Seguridad</h3>
+          <p>Encriptación simétrica de nivel profesional para mantener tus datos privados e intocables.</p>
+        </div>
+
+        <div class="vault-card">
+          <h3><span class="vault-card-icon">💎</span> Funciones Exclusivas</h3>
+          <p>Herramientas avanzadas de gestión diseñadas para superar los límites del mercado actual.</p>
+        </div>
+      </div>
+
+      <!-- 🔷 Botón Adquirir Rediseñado -->
+      <div class="vault-cta">
+        <button type="button" id="open-vault-modal" class="btn-vault-pill shimmer-btn">
+          ADQUIRIR SYMMETRICAL VAULT
+        </button>
+      </div>
+    </div>
+  </section> <!-- AQUÍ SE CIERRA LA SECCIÓN VAULT -->
+
+  <!-- 🔷 SECCIÓN CONTACTO -->
   <section id="contacto" class="service-box reveal">
     <div class="separador reveal">Contacto</div>
 
@@ -138,6 +187,57 @@
   <a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <img src="assets/Whatsapp.png" alt="WhatsApp" />
   </a>
+
+  <!-- 🔷 MODAL CHECKOUT SYMMETRICAL VAULT (AL FINAL DE TODO) -->
+  <div id="vault-modal" class="modal-overlay">
+    <div class="modal-content glass-modal">
+      <button type="button" class="modal-close" id="close-vault-modal">&times;</button>
+      
+      <div class="modal-header">
+        <img src="assets/vault.png" alt="Symmetrical Vault" class="modal-logo">
+        <h3>Adquirir <span>Symmetrical Vault</span></h3>
+        <p>Completa tus datos para continuar con el pago seguro.</p>
+      </div>
+
+      <form id="vault-checkout-form" class="modal-form">
+        <div class="form-group">
+          <label for="vault-name">Nombre Completo</label>
+          <input type="text" id="vault-name" placeholder="Ej. Carlos Mendoza" required />
+        </div>
+
+        <div class="form-group">
+          <label for="vault-phone">Teléfono / WhatsApp</label>
+          <input type="tel" id="vault-phone" placeholder="Ej. +57 300 123 4567" required />
+        </div>
+
+        <div class="form-group">
+          <label for="vault-email">Correo Electrónico</label>
+          <input type="email" id="vault-email" placeholder="tu@email.com" required />
+        </div>
+<!-- Selector de Planes justo antes del botón de pago -->
+   <div class="form-group">
+  <label>Plan</label>
+  <div class="custom-dropdown" id="dropdown-planes">
+    <div class="dropdown-trigger">
+      <span id="selected-plan">Elige una opción...</span>
+      <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+    <div class="dropdown-menu">
+      <div class="dropdown-item" data-value="1">1- Vault Basic - 2.5 Gb</div>
+      <div class="dropdown-item" data-value="2">2- Vault Pro - 128 Gb</div>
+      <div class="dropdown-item" data-value="3">3- Vault Pro+ - 526 Gb</div>
+    </div>
+  </div>
+  <!-- Input oculto para enviar el valor en el formulario -->
+  <input type="hidden" name="plan" id="input-plan-hidden" value="">
+</div>
+        <button type="submit" class="btn-mercadopago">
+          <span>PAGAR CON MERCADO PAGO</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
