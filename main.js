@@ -5,7 +5,7 @@ import { collection, addDoc, doc, getDoc, serverTimestamp } from 'https://www.gs
 document.addEventListener('DOMContentLoaded', () => {
   
   // 🔷 1. LÓGICA DE PESTAÑAS (Tabs)
-  const buttons = document.querySelectorAll('.tab-btn');
+  const buttons = document.querySelectorAll('.tab-glow-btn');
   const contents = document.querySelectorAll('.tab-content');
 
   buttons.forEach((btn, index) => {

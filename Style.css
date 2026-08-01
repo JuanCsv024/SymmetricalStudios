@@ -141,22 +141,6 @@ nav a.nav-vault:hover .vault-icon {
   transform: scale(1.15) rotate(-3deg);
 }
 
-/* 🔷 Menú Móvil Toggle */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-.menu-toggle span {
-  width: 25px;
-  height: 2px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-}
-
 /* 🔷 Separadores */
 .separador {
   text-align: center;
@@ -236,79 +220,139 @@ nav a.nav-vault:hover .vault-icon {
 
 .hero-buttons {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
   justify-content: center;
+  margin-top: 24px;
 }
 
-.btn-primary {
-  background: #ffffff;
-  color: #000000;
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: 1px solid #ffffff;
-}
-
-.btn-primary:hover {
-  background: transparent;
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
+/* 🔷 Botón Principal con Latido (Pulse CTA) */
+.pulse-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
-  padding: 14px 28px;
-  border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Animación de latido continua */
+  animation: borderPulse 2.5s infinite ease-in-out;
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+/* Transición suave para la flechita */
+.pulse-btn .btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* 🔷 Animación del Latido / Resplandor */
+@keyframes borderPulse {
+  0% {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.25);
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+  }
+}
+/* 🔷 Efecto Liquid Glass Forzado al pasar el mouse */
+.pulse-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important; /* Transparente cristal */
+  color: #ffffff !important;                        /* Texto blanco */
+  border-color: rgba(255, 255, 255, 0.7) !important;/* Borde fino con brillo */
+  
+  /* Cristal y Difuminado */
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  
+  /* Elevación y Resplandor sutil */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.15),
+              inset 0 0 15px rgba(255, 255, 255, 0.1) !important;
+  
+  animation: none !important; /* Detiene el latido */
+}
+
+/* Movimiento de la flecha al pasar el mouse */
+.pulse-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+.btn-glow-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-glow-secondary:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 /* 🔷 Estilos de Pestañas de Servicios */
 .services-tabs {
   display: flex;
+  gap: 16px;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 20;
-  pointer-events: auto;
+  margin-bottom: 30px;
 }
 
-.tab-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
+/* Estado Base (Inactivo) */
+.tab-glow-btn {
+  padding: 12px 32px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03); 
+  color: rgba(255, 255, 255, 0.5); /* Texto atenuao */
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  font-family: inherit;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 30;
-  pointer-events: auto;
+  outline: none;
 }
 
-.tab-btn:hover, .tab-btn.active {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+/* Hover en inactivo */
+.tab-glow-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Estado Activo (.active) */
+.tab-glow-btn.active {
+  background: rgba(255, 255, 255, 0.15); /* Un pelito más clarito el fondo */
+  color: #ffffff;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.9); /* Borde blanco bien vivo */
+  
+  /* Resplandor elegante alrededor */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25),
+              inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .tab-content {
@@ -322,9 +366,11 @@ nav a.nav-vault:hover .vault-icon {
 }
 
 .tab-subtitle {
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
+  text-align: center;      /* 👈 Centra el texto */
+  width: 100%;             /* 👈 Ocupa todo el ancho */
+  max-width: 600px;        /* Opcional: para que no quede tan ancho */
+  margin: 10px auto 30px;  /* 👈 "auto" a los lados lo centra como bloque */
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* 🔷 Contenedor Flex para Tarjetas */
