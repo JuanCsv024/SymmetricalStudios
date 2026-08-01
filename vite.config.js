@@ -3,6 +3,11 @@ import htmlMinify from 'vite-plugin-html-minify';
 
 export default defineConfig({
   plugins: [
-    htmlMinify()
+    htmlMinify({
+      removeComments: true,
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true
+    })
   ]
 });
