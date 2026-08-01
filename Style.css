@@ -1264,3 +1264,40 @@ body {
     right: 16px;
   }
 }
+@media (max-width: 768px) {
+  .hero-buttons {
+    display: flex !important;
+    flex-direction: row !important; /* Mantiene la fila horizontal */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;                     /* Espaciado uniforme */
+    width: 100%;
+  }
+
+  .btn-hero-capsule {
+    flex: 1;                       /* Fuerza a ambos botones a compartir el mismo ancho */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px !important;  /* Relleno identico para igualar la altura */
+    font-size: 0.85rem !important;  /* Ajusta el texto para que no rompa la fila */
+    border-radius: 9999px !important;
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+/* 🔷 Corrección de alineación del título en celulares */
+@media (max-width: 768px) {
+  h2.separador {
+    font-size: 1.2rem !important;  /* Reducimos un pelito el texto para que quepa bien */
+    text-align: center !important;  /* Aseguramos centrado total */
+    padding: 0 10px !important;
+    display: block !important;
+  }
+
+  /* Ocultamos las rayitas decorativas laterales solo en celular para que no descuadren el texto */
+  h2.separador::before,
+  h2.separador::after {
+    display: none !important;
+  }
+}
