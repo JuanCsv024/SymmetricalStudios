@@ -117,11 +117,16 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* 🔷 Botón Symmetrical Vault en Nav */
+/* 🔷 Botón Symmetrical Vault en Nav (PC) */
 nav a.nav-vault {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+/* 🔷 Ocultar botón móvil en PC */
+.btn-vault-mobile {
+  display: none;
 }
 
 .vault-icon {
@@ -447,7 +452,6 @@ nav a.nav-vault:hover .vault-icon {
   margin: 3rem 0;
 }
 
-/* Canvas del mapa de nodos centrado */
 #vault-canvas {
   position: absolute;
   top: 50%;
@@ -510,7 +514,6 @@ nav a.nav-vault:hover .vault-icon {
   color: #ffffff;
 }
 
-/* Tarjetas Limpias */
 .vault-features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -557,7 +560,6 @@ nav a.nav-vault:hover .vault-icon {
   line-height: 1.5;
 }
 
-/* 🔷 Botón "Adquirir" Rediseñado al estilo Next-Gen Storage */
 .vault-cta {
   margin-top: 1.2rem;
 }
@@ -662,28 +664,6 @@ nav a.nav-vault:hover .vault-icon {
   transform: translateY(0);
 }
 
-/* 🔷 WhatsApp Flotante */
-.whatsapp-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 52px;
-  height: 52px;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-float img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.12) rotate(6deg);
-}
-
 /* 🔷 Gorrito Enganchado al Logo */
 .lo.navidad-wrapper {
   position: relative;
@@ -723,7 +703,7 @@ html {
 }
 
 /* ==========================================
-   📱 RESPONSIVE DESIGN
+   📱 RESPONSIVE DESIGN (PC Y TABLET)
    ========================================== */
 
 /* 1. Pantallas grandes (A partir de 1440px) */
@@ -744,27 +724,38 @@ html {
   .hero h1 { font-size: 2.5rem; }
 }
 
-/* 3. Móviles (Hasta 768px) */
+/* ==========================================
+   📱 ESTILOS SOLO PARA CELULARES (MOBILE <= 768px)
+   ========================================== */
 @media (max-width: 768px) {
   header { padding: 0.8rem 1.2rem; }
-  .menu-toggle { display: flex; }
-  
-  nav ul {
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100vh;
-    background-color: #070707;
-    padding-top: 5rem;
-    text-align: center;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
+
+  /* Ocultar menú normal de PC y la hamburguesa */
+  header nav,
+  .menu-toggle {
+    display: none !important;
   }
-  
-  nav ul.active { transform: translateY(0); }
-  nav ul li { margin: 1.2rem 0; }
-  nav ul li a { font-size: 1.3rem; }
+
+  /* Botón de Symmetrical Vault visible únicamente en móvil */
+  .btn-vault-mobile {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-vault-mobile .vault-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
 
   .logo-img { max-width: 130px; height: auto; }
   #gorrito-navidad-flotante { width: 32px; top: -8px; left: -12px; }
@@ -895,7 +886,6 @@ body {
   transform: scale(1);
 }
 
-/* 🔷 3. SCROLLBAR LIQUID GLASS NATIVA DE SYMMETRICAL */
 .glass-modal::-webkit-scrollbar {
   width: 6px;
 }
@@ -919,13 +909,11 @@ body {
   background: rgba(255, 255, 255, 0.35);
 }
 
-/* Soporte para Firefox */
 .glass-modal {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.02);
 }
 
-/* Botón de cierre en esquina superior derecha */
 .modal-close {
   position: absolute;
   top: 14px;
@@ -1012,7 +1000,6 @@ body {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* 🔷 1. BOTÓN MERCADO PAGO ESTILO SYMMETRICAL PILL */
 .btn-mercadopago {
   display: flex;
   align-items: center;
@@ -1044,45 +1031,6 @@ body {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* ==========================================
-   🔷 2 & 3. SELECTOR DE PLANES PERSONALIZADO (NO NATIVO)
-   ========================================== */
-/* 🔷 SELECTOR CON MISMO DISEÑO QUE EL INPUT DE TEXTO */
-.form-group select {
-  width: 100%;
-  padding: 10px 16px;
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px; /* O usa 30px si tus inputs usan bordes totalmente redondos */
-  color: rgba(255, 255, 255, 0.85);
-  font-family: inherit;
-  font-size: 0.85rem;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  
-  /* Flechita personalizada sutil */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 14px;
-}
-
-.form-group select:focus {
-  border-color: rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Forzar fondo oscuro al desplegar opciones */
-.form-group select option {
-  background-color: #121214;
-  color: #ffffff;
-  padding: 10px;
-}
 /* 🔷 CUSTOM DROPDOWN GLASSMORPHISM */
 .custom-dropdown {
   position: relative;
@@ -1151,4 +1099,122 @@ body {
 .custom-dropdown.open .chevron {
   transform: rotate(180deg);
   transition: transform 0.25s ease;
+}
+
+/* ==========================================
+   🔷 CONTACTO Y BOTÓN NATIVO DE WHATSAPP
+   ========================================== */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.contact-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.contact-card p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* ==========================================
+   🔷 WHATSAPP FLOATING PILL (GLASSMORPHISM)
+   ========================================== */
+.whatsapp-pill-float {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.whatsapp-pill-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(18, 18, 20, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wa-text {
+  display: inline-block;
+  max-width: 200px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.4s ease, 
+              margin 0.6s ease;
+}
+
+.whatsapp-pill-content .wa-icon {
+  fill: #ffffff;
+  flex-shrink: 0;
+}
+
+.whatsapp-pill-float.scrolling .wa-text {
+  max-width: 0px;
+  opacity: 0;
+  margin: 0;
+}
+
+.whatsapp-pill-float.scrolling .whatsapp-pill-content {
+  gap: 0px;
+  padding: 10px 10px;
+}
+
+.whatsapp-pill-float:hover .whatsapp-pill-content {
+  border-color: rgba(37, 211, 102, 0.5);
+  background: rgba(25, 25, 30, 0.95);
+}
+
+.whatsapp-pill-float:hover .wa-text {
+  max-width: 200px !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-pill-float {
+    bottom: 70px;
+    right: 16px;
+  }
 }

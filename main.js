@@ -1,3 +1,7 @@
+// 🔷 IMPORTACIÓN DE FIREBASE
+import { db } from './firebase-config.js';
+import { collection, addDoc, doc, getDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   
   // 🔷 1. LÓGICA DE PESTAÑAS (Tabs)
@@ -186,20 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
     drawVaultNodes();
   }
 
-  // 🔷 6. CONTROL DEL MODAL Y FORMULARIO DE SYMMETRICAL VAULT
+  // 🔷 6. CONTROL DEL MODAL Y DROPDOWN
   const openModalBtn = document.getElementById('open-vault-modal');
   const closeModalBtn = document.getElementById('close-vault-modal');
   const modal = document.getElementById('vault-modal');
   const checkoutForm = document.getElementById('vault-checkout-form');
 
-  // Enlaces de Pago de Mercado Pago según el valor seleccionado (data-value "1", "2", "3")
-  const PLAN_LINKS = {
-    '1': 'link.mercadopago.com.co/vaultbasic',
-    '2': 'https://mpago.li/2jtS4FB',
-    '3': 'https://mpago.li/2eF4Zhs'
-  };
-
-  // Abrir modal
   if (openModalBtn && modal) {
     openModalBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -207,14 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cerrar modal al dar clic a la X
   if (closeModalBtn && modal) {
     closeModalBtn.addEventListener('click', () => {
       modal.classList.remove('active');
     });
   }
 
-  // Cerrar modal al presionar fuera de la ventana
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
@@ -223,28 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Captura de datos y redirección a la pasarela de pagos
-  if (checkoutForm) {
-    checkoutForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const nombre = document.getElementById('vault-name').value;
-      const email = document.getElementById('vault-email').value;
-      const telefono = document.getElementById('vault-phone').value;
-      
-      // ✅ CORREGIDO: Se obtiene el valor del input hidden correspondiente
-      const planInput = document.getElementById('input-plan-hidden');
-      const planSeleccionado = planInput ? planInput.value : '';
-
-      console.log('Datos Capturados:', { nombre, email, telefono, planSeleccionado });
-
-      // Redireccionar al link del plan correspondiente (o a uno por defecto)
-      const targetUrl = PLAN_LINKS[planSeleccionado] || 'https://mpago.li/1FTESnN';
-      window.location.href = targetUrl;
-    });
-  }
-
-  // Lógica para abrir/cerrar el dropdown personalizado
+  // Dropdown personalizado
   const dropdown = document.getElementById('dropdown-planes');
   if (dropdown) {
     const trigger = dropdown.querySelector('.dropdown-trigger');
@@ -266,11 +239,101 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Cerrar si hace clic afuera
     document.addEventListener('click', (e) => {
       if (!dropdown.contains(e.target)) {
         dropdown.classList.remove('open');
       }
     });
   }
+
+  // 🔷 7. CONSULTAR PLAN EN FIREBASE, GUARDAR USUARIO Y REDIRECCIONAR
+  if (checkoutForm) {
+    checkoutForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+      const nombre = document.getElementById('vault-name').value.trim();
+      const email = document.getElementById('vault-email').value.trim();
+      const telefono = document.getElementById('vault-phone').value.trim();
+      const planInput = document.getElementById('input-plan-hidden');
+      const planSeleccionado = planInput ? planInput.value : '';
+
+      if (!planSeleccionado) {
+        alert('Por favor selecciona un plan antes de continuar, mi hermano.');
+        return;
+      }
+
+      // Feedback visual en el botón
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'PROCESANDO REGISTRO...';
+      }
+
+      try {
+        // 1. Obtener el link de pago y nombre directamente desde Firestore (/planes_vault/1 o /planes_vault/2)
+        const planRef = doc(db, 'planes_vault', planSeleccionado);
+        const planSnap = await getDoc(planRef);
+
+        let linkMercadoPago = '';
+        let nombrePlan = '';
+
+        if (planSnap.exists()) {
+          const planData = planSnap.data();
+          linkMercadoPago = planData.link;
+          nombrePlan = planData.nombre;
+        } else {
+          alert('No se encontró la configuración del plan en Firebase.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'PAGAR CON MERCADO PAGO';
+          }
+          return;
+        }
+
+        // 2. Guardar los datos del usuario en la colección "usuarios_vault"
+        await addDoc(collection(db, 'usuarios_vault'), {
+          nombre: nombre,
+          email: email,
+          telefono: telefono,
+          planId: planSeleccionado,
+          planNombre: nombrePlan,
+          fechaRegistro: serverTimestamp(),
+          estadoPago: 'Pendiente'
+        });
+
+        console.log('¡Usuario registrado con éxito en Firebase!');
+
+        // 3. Redireccionar al enlace de Mercado Pago obtenido de Firebase
+        if (linkMercadoPago) {
+          window.location.href = linkMercadoPago;
+        } else {
+          alert('El enlace de pago no está disponible en este momento.');
+        }
+
+      } catch (error) {
+        console.error('Error en Firebase:', error);
+        alert('Hubo un error guardando tus datos. Revisa la consola o tu conexión.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'PAGAR CON MERCADO PAGO';
+        }
+      }
+    });
+  }
+
+  // 🔷 8. ANIMACIÓN DE OCULTAR TEXTO WHATSAPP AL HACER SCROLL
+  const waPill = document.querySelector('.whatsapp-pill-float');
+  let isScrollingTimer = null;
+
+  if (waPill) {
+    window.addEventListener('scroll', () => {
+      waPill.classList.add('scrolling');
+      clearTimeout(isScrollingTimer);
+
+      isScrollingTimer = setTimeout(() => {
+        waPill.classList.remove('scrolling');
+      }, 500);
+    }, { passive: true });
+  }
+
 });
