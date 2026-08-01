@@ -2,6 +2,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   build: {
-    minify: 'esbuild'
-  }
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+  },
 });
