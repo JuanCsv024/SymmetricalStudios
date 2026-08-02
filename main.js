@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Fotografias',
       ' Videos',
       ' Documentos',
-      ' Correo',
+      ' Correos',
       '¡Y mucho mas en un solo lugar!'
     ];
 
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toast.className = `toast-notification ${type}`;
   toast.innerHTML = `
     <div class="toast-content">
-      <img src="assets/campanaos.png" class="toast-bell-icon" alt="Campana de notificación" />
+      <img src="/assets/campanaos.png" class="toast-bell-icon" alt="Campana de notificación" />
       <span class="toast-message">${message}</span>
     </div>
   `;
