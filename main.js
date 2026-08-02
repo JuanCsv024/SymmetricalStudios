@@ -454,14 +454,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const existingToast = document.querySelector(".toast-notification");
   if (existingToast) existingToast.remove();
 
-  const toast = document.createElement("div");
-  toast.className = `toast-notification ${type}`;
-  toast.innerHTML = `
-    <div class="toast-content">
-      <img src="/assets/campanaos.png" class="toast-bell-icon" alt="Campana de notificación" />
-      <span class="toast-message">${message}</span>
-    </div>
-  `;
+ import campana from "./assets/campanaos.png";
+
+toast.innerHTML = `
+<div class="toast-content">
+    <img src="${campana}" class="toast-bell-icon">
+    <span class="toast-message">${message}</span>
+</div>
+`;
 
   document.body.appendChild(toast);
 
