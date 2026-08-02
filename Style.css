@@ -1389,3 +1389,97 @@ body {
     right: 16px;
   }
 }
+/* ==========================================
+   NOTIFICACIÓN FLOTANTE (ARRIBA AL CENTRO)
+   ========================================== */
+
+.toast-notification {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 999999;
+  
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  
+  padding: 12px 24px;
+  border-radius: 16px;
+  
+  /* Estilo Glassmorphism translúcido */
+  background: rgba(18, 18, 20, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+              0 0 20px rgba(255, 255, 255, 0.05);
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Estado activo cuando aparece en pantalla */
+.toast-notification.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.toast-message {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   ANIMACIÓN DE LA CAMPANA (PULL / RINGING)
+   ========================================== */
+
+.toast-bell-icon {
+  width: 32px;
+  height: auto;
+  object-fit: contain;
+  /* Anclaje en la parte superior para que pivote desde el aro */
+  transform-origin: top center;
+  display: block;
+}
+
+/* La animación se dispara al mostrar el toast */
+.toast-notification.show .toast-bell-icon {
+  animation: ringBell 0.7s ease-in-out 0.2s 1;
+}
+
+/* Secuencia de sacudida estilo campana real */
+@keyframes ringBell {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-18deg); }
+  40% { transform: rotate(18deg); }
+  60% { transform: rotate(-12deg); }
+  80% { transform: rotate(12deg); }
+  90% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Ajuste responsivo para celulares */
+@media (max-width: 480px) {
+  .toast-notification {
+    width: 90%;
+    max-width: 360px;
+    padding: 10px 18px;
+  }
+  
+  .toast-message {
+    font-size: 0.85rem;
+    white-space: normal;
+  }
+}

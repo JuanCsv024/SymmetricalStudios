@@ -359,53 +359,116 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 🔷 10. CANVAS DE SYMMETRICAL CLOUD (SILUETA DINÁMICA MULTI-NUBE Y FLOTACIÓN CONTINUA)
-  // 🔷 SECUENCIA DINÁMICA DEL TÍTULO SYMMETRICAL CLOUD
-const dynamicWord = document.getElementById('dynamic-cloud-word');
+ // 🔷 10. SECUENCIA DINÁMICA DEL TÍTULO SYMMETRICAL CLOUD
+  const dynamicWord = document.getElementById('dynamic-cloud-word');
 
-if (dynamicWord) {
-  // Secuencia de íconos/elementos a mostrar
-  const sequence = [
-    'Fotografias',  // 1. Symmetrical
-    ' Videos',      // 2. Fotos/Galería
-    ' Documentos',   // 3. Archivos
-    ' Correo',       // 4. Email
-    '¡Y mucho mas en un solo lugar!' // 5. Cierre final
-    
-  ];
+  if (dynamicWord) {
+    const sequence = [
+      'Fotografias',
+      ' Videos',
+      ' Documentos',
+      ' Correo',
+      '¡Y mucho mas en un solo lugar!'
+    ];
 
-  let step = 0;
+    let step = 0;
 
-  function runCloudSequence() {
-    // 1. Efecto de salida (Desvanecer y subir)
-    dynamicWord.classList.add('fade-out');
+    function runCloudSequence() {
+      dynamicWord.classList.add('fade-out');
 
-    setTimeout(() => {
-      // Avanzar al siguiente paso de la secuencia
-      step = (step + 1) % sequence.length;
-      
-      // Actualizar el texto/ícono
-      dynamicWord.innerHTML = sequence[step];
+      setTimeout(() => {
+        step = (step + 1) % sequence.length;
+        dynamicWord.innerHTML = sequence[step];
 
-      // Si llegó a la palabra "Cloud", le aplicamos el gradiente especial
-      if (sequence[step] === 'Cloud') {
-        dynamicWord.classList.add('highlight-cloud');
-      } else {
-        dynamicWord.classList.remove('highlight-cloud');
+        if (sequence[step] === 'Cloud') {
+          dynamicWord.classList.add('highlight-cloud');
+        } else {
+          dynamicWord.classList.remove('highlight-cloud');
+        }
+
+        dynamicWord.classList.remove('fade-out');
+        dynamicWord.classList.add('fade-in');
+
+        setTimeout(() => {
+          dynamicWord.classList.remove('fade-in');
+        }, 50);
+
+      }, 400);
+    }
+
+    setInterval(runCloudSequence, 2200);
+  }
+}); // <-- AQUÍ CIERRA EL DOMContentLoaded PRINCIPAL DEL ARCHIVO
+
+// 🔷 11. ENVÍO DE FORMSPREE VÍA AJAX (COMPATIBLE CON VITE)
+  const contactForm = document.querySelector('.contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // ¡Frena la redirección a Formspree!
+
+      const submitBtn = contactForm.querySelector('button[type="submit"], input[type="submit"]');
+      const originalBtnText = submitBtn ? (submitBtn.innerText || submitBtn.value) : '';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitBtn.tagName === 'INPUT') {
+          submitBtn.value = 'Enviando...';
+        } else {
+          submitBtn.innerText = 'Enviando...';
+        }
       }
 
-      // Preparar para la entrada (desde abajo con blur)
-      dynamicWord.classList.remove('fade-out');
-      dynamicWord.classList.add('fade-in');
+      const formData = new FormData(contactForm);
 
-      // Animación de entrada
-      setTimeout(() => {
-        dynamicWord.classList.remove('fade-in');
-      }, 50);
+      try {
+        const response = await fetch(contactForm.action, {
+          method: contactForm.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-    }, 400); // Tiempo que dura la animación de salida
+        if (response.ok) {
+          contactForm.reset();
+          showNotification("¡Mensaje enviado con éxito! Pronto nos pondremos en contacto.", "success");
+        } else {
+          showNotification("Uy, ocurrió un problema al enviar el mensaje. Intenta de nuevo.", "error");
+        }
+      } catch (error) {
+        showNotification("Error de conexión. Revisa tu internet e intenta de nuevo.", "error");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitBtn.tagName === 'INPUT') {
+            submitBtn.value = originalBtnText;
+          } else {
+            submitBtn.innerText = originalBtnText;
+          }
+        }
+      }
+    });
   }
+  function showNotification(message, type = "success") {
+  const existingToast = document.querySelector(".toast-notification");
+  if (existingToast) existingToast.remove();
 
-  // Cambia cada 2.2 segundos (2200 ms)
-  setInterval(runCloudSequence, 2200);
+  const toast = document.createElement("div");
+  toast.className = `toast-notification ${type}`;
+  toast.innerHTML = `
+    <div class="toast-content">
+      <img src="assets/campanaos.png" class="toast-bell-icon" alt="Campana de notificación" />
+      <span class="toast-message">${message}</span>
+    </div>
+  `;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 100);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 400);
+  }, 4000);
 }
-});
