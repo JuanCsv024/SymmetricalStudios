@@ -1,6 +1,7 @@
 // 🔷 IMPORTACIÓN DE FIREBASE
 import { db } from './firebase-config.js';
 import { collection, addDoc, doc, getDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import campana from "./assets/campanaos.png";
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -453,16 +454,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function showNotification(message, type = "success") {
   const existingToast = document.querySelector(".toast-notification");
   if (existingToast) existingToast.remove();
-
- import campana from "./assets/campanaos.png";
+const toast = document.createElement("div");
+toast.className = `toast-notification ${type}`;
 
 toast.innerHTML = `
 <div class="toast-content">
-    <img src="${campana}" class="toast-bell-icon">
+    <img src="${campana}" class="toast-bell-icon" alt="Campana">
     <span class="toast-message">${message}</span>
 </div>
 `;
-
+ 
   document.body.appendChild(toast);
 
   setTimeout(() => toast.classList.add("show"), 100);
