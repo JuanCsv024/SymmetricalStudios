@@ -369,7 +369,7 @@ if (dynamicWord) {
     ' Videos',      // 2. Fotos/Galería
     ' Documentos',   // 3. Archivos
     ' Correo',       // 4. Email
-    'Symmetrical Cloud' // 5. Cierre final
+    '¡Y mucho mas en un solo lugar!' // 5. Cierre final
     
   ];
 
