@@ -138,9 +138,11 @@ nav ul {
   width: 100%;
 }
 
-/* Íconos dentro de los enlaces del Navbar */
+/* ⚡ Íconos dentro de los enlaces del Navbar (CORREGIDO PARA NUBE Y VAULT) */
 .nav-vault .vault-icon,
-.nav-cloud .vault-icon {
+.nav-cloud .cloud-icon,
+.btn-vault-mobile .vault-icon,
+.btn-vault-mobile .cloud-icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -148,7 +150,7 @@ nav ul {
 }
 
 .nav-vault:hover .vault-icon,
-.nav-cloud:hover .vault-icon {
+.nav-cloud:hover .cloud-icon {
   transform: scale(1.15) rotate(-3deg);
 }
 
@@ -538,7 +540,8 @@ nav ul {
   gap: 15px;
 }
 
-.vault-main-logo {
+.vault-main-logo,
+.cloud-main-logo {
   width: 55px;
   height: 55px;
   object-fit: contain;
@@ -643,6 +646,7 @@ nav ul {
   transform: translateY(-3px);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
+
 /* ==========================================
    🔷 SECCIÓN SYMMETRICAL CLOUD
    ========================================== */
@@ -683,6 +687,7 @@ nav ul {
   align-items: center;
   gap: 1.8rem;
 }
+
 /* ==========================================
    ✨ TÍTULO DINÁMICO EN SYMMETRICAL CLOUD
    ========================================== */
@@ -700,7 +705,7 @@ nav ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px; /* Evita que el texto de al lado brinque */
+  min-width: 120px;
   height: 1.4em;
   position: relative;
   vertical-align: middle;
@@ -717,27 +722,25 @@ nav ul {
   filter: blur(0px);
 }
 
-/* Estado cuando sale la palabra/ícono */
 .dynamic-word.fade-out {
   opacity: 0;
   transform: translateY(-12px);
   filter: blur(4px);
 }
 
-/* Estado cuando entra la nueva palabra/ícono */
 .dynamic-word.fade-in {
   opacity: 0;
   transform: translateY(12px);
   filter: blur(4px);
 }
 
-/* Estilo especial con brillo para la palabra final "Cloud" */
 .dynamic-word.highlight-cloud {
   background: linear-gradient(135deg, #ffffff 0%, #a1a1a1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
+
 /* 🔷 Tarjeta de Contacto */
 .contact-card {
   width: 480px;
@@ -853,7 +856,6 @@ html {
 /* ==========================================
    📱 RESPONSIVE DESIGN (PC Y TABLET)
    ========================================== */
-
 @media (min-width: 1440px) {
   body { font-size: 18px; }
   .hero-content, .service-box, .contact-card {
@@ -893,12 +895,6 @@ html {
     font-weight: 600;
     text-decoration: none;
     letter-spacing: 0.5px;
-  }
-
-  .btn-vault-mobile .vault-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
   }
 
   .logo-img { max-width: 130px; height: auto; }
