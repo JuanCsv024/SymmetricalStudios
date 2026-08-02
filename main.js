@@ -263,14 +263,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Feedback visual en el botón
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerText = 'PROCESANDO REGISTRO...';
       }
 
       try {
-        // 1. Obtener el link de pago y nombre directamente desde Firestore (/planes_vault/1 o /planes_vault/2)
         const planRef = doc(db, 'planes_vault', planSeleccionado);
         const planSnap = await getDoc(planRef);
 
@@ -290,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // 2. Guardar los datos del usuario en la colección "usuarios_vault"
         await addDoc(collection(db, 'usuarios_vault'), {
           nombre: nombre,
           email: email,
@@ -303,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('¡Usuario registrado con éxito en Firebase!');
 
-        // 3. Redireccionar al enlace de Mercado Pago obtenido de Firebase
         if (linkMercadoPago) {
           window.location.href = linkMercadoPago;
         } else {
@@ -336,4 +332,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // 🔷 9. NAVEGACIÓN Y SMOOTH SCROLL CON OFFSET DE HEADER
+  const header = document.querySelector('header');
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      
+      if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          e.preventDefault();
+          const headerHeight = header ? header.offsetHeight : 0;
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight - 20;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+
+  // 🔷 10. CANVAS DE SYMMETRICAL CLOUD (SILUETA DINÁMICA MULTI-NUBE Y FLOTACIÓN CONTINUA)
+  // 🔷 SECUENCIA DINÁMICA DEL TÍTULO SYMMETRICAL CLOUD
+const dynamicWord = document.getElementById('dynamic-cloud-word');
+
+if (dynamicWord) {
+  // Secuencia de íconos/elementos a mostrar
+  const sequence = [
+    'Fotografias',  // 1. Symmetrical
+    ' Videos',      // 2. Fotos/Galería
+    ' Documentos',   // 3. Archivos
+    ' Correo',       // 4. Email
+    'Symmetrical Cloud' // 5. Cierre final
+    
+  ];
+
+  let step = 0;
+
+  function runCloudSequence() {
+    // 1. Efecto de salida (Desvanecer y subir)
+    dynamicWord.classList.add('fade-out');
+
+    setTimeout(() => {
+      // Avanzar al siguiente paso de la secuencia
+      step = (step + 1) % sequence.length;
+      
+      // Actualizar el texto/ícono
+      dynamicWord.innerHTML = sequence[step];
+
+      // Si llegó a la palabra "Cloud", le aplicamos el gradiente especial
+      if (sequence[step] === 'Cloud') {
+        dynamicWord.classList.add('highlight-cloud');
+      } else {
+        dynamicWord.classList.remove('highlight-cloud');
+      }
+
+      // Preparar para la entrada (desde abajo con blur)
+      dynamicWord.classList.remove('fade-out');
+      dynamicWord.classList.add('fade-in');
+
+      // Animación de entrada
+      setTimeout(() => {
+        dynamicWord.classList.remove('fade-in');
+      }, 50);
+
+    }, 400); // Tiempo que dura la animación de salida
+  }
+
+  // Cambia cada 2.2 segundos (2200 ms)
+  setInterval(runCloudSequence, 2200);
+}
 });

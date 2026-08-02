@@ -28,21 +28,25 @@
       <img src="assets/Symmetricalstudios.png" alt="logo" class="logo-img" />
     </div>
     
-    <!-- Menú Desktop (Contiene Vault + Servicios + Contacto juntos) -->
-    <nav>
-      <ul>
-        <li>
-          <a href="#vault" class="nav-vault">
-            <img src="assets/vault.png" alt="Symmetrical Vault" class="vault-icon">
-            <span>SYMMETRICAL VAULT</span>
-          </a>
-        </li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-
-    <!-- Botón visible ÚNICAMENTE en celular / móvil -->
+   <!-- 🔷 Menú Desktop (Contiene ÚNICAMENTE Vault y Cloud juntos) -->
+<nav>
+  <ul>
+    <li>
+      <a href="#vault" class="nav-vault">
+        <img src="assets/vault.png" alt="Symmetrical Vault" class="vault-icon">
+        <span>SYMMETRICAL VAULT</span>
+      </a>
+    </li>
+    <li>
+      <!-- ⚠️ Cambiado href a #cloud -->
+      <a href="#cloud" class="nav-cloud">
+        <img src="assets/cloud.png" alt="Symmetrical Cloud" class="vault-icon">
+        <span>SYMMETRICAL CLOUD</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+    <!-- 🔷 Botón visible ÚNICAMENTE en celular / móvil (Solo Symmetrical Vault) -->
     <a href="#vault" class="btn-vault-mobile">
       <img src="assets/vault.png" alt="Symmetrical Vault" class="vault-icon">
       <span>SYMMETRICAL VAULT</span>
@@ -61,7 +65,7 @@
       <h1 class="reveal delay-1">Transformamos tus ideas en <span>experiencias digitales</span></h1>
       <p class="reveal delay-2">Diseñamos y desarrollamos páginas web, aplicaciones personalizadas y software a la medida para potenciar tu marca y escalar tu negocio.</p>
       
-      <!-- 🔷 Botones del Hero corregidos y alineados para celular -->
+      <!-- Botones del Hero corregidos y alineados para celular -->
       <div class="hero-buttons reveal delay-3">
         <a href="#contacto" class="btn-hero-capsule btn-primary pulse-btn">
           Iniciar un proyecto <span class="btn-arrow">→</span>
@@ -142,7 +146,6 @@
 
   <!-- 🔷 SECCIÓN SYMMETRICAL VAULT -->
   <section id="vault" class="vault-section reveal">
-    <!-- Canvas para animación de nodos de datos en la nube -->
     <canvas id="vault-canvas"></canvas>
 
     <div class="vault-container">
@@ -157,7 +160,6 @@
         La evolución del almacenamiento inteligente. Potenciado de la mano con <strong>Symmetrical Cloud</strong>, nuestra Vault integra funciones exclusivas de procesamiento, velocidad y control que redefinen la forma de gestionar tus activos en la nube.
       </p>
 
-      <!-- Grid Limpio de Características -->
       <div class="vault-features">
         <div class="vault-card">
           <h3><span class="vault-card-icon">⚡</span> Symmetrical Cloud Sync</h3>
@@ -175,7 +177,6 @@
         </div>
       </div>
 
-      <!-- 🔷 Botón Adquirir Rediseñado -->
       <div class="vault-cta">
         <button type="button" id="open-vault-modal" class="btn-vault-pill shimmer-btn">
           ADQUIRIR SYMMETRICAL VAULT
@@ -183,6 +184,42 @@
       </div>
     </div>
   </section>
+  <!-- 🔷 SECCIÓN SYMMETRICAL CLOUD -->
+<section id="cloud" class="vault-section reveal">
+  <!-- Canvas para las partículas en silueta de nube -->
+  <canvas id="cloud-canvas"></canvas>
+
+  <div class="vault-container">
+    <div class="badge">Symmetrical Cloud</div>
+    
+  <div class="cloud-title-container">
+  <h2 class="cloud-dynamic-title">
+    <span id="dynamic-cloud-word" class="dynamic-word">Symmetrical Cloud</span>
+  </h2>
+</div>
+
+    <p class="vault-description">
+      La nube inteligente que potencia tu almacenamiento. Con <strong>Symmetrical Cloud</strong>, experimenta una infraestructura de alto rendimiento, diseñada para ofrecer velocidad, seguridad y escalabilidad sin precedentes.
+    </p>
+
+    <div class="vault-features">
+      <div class="vault-card">
+        <h3><span class="vault-card-icon">☁️</span> Sincronización Instantánea</h3>
+        <p>Transferencia fluida de datos y procesamiento en tiempo real optimizado para entornos de alta exigencia.</p>
+      </div>
+
+      <div class="vault-card">
+        <h3><span class="vault-card-icon">🌐</span> Red Global Distribuida</h3>
+        <p>Servidores estratégicamente ubicados para garantizar respuestas de baja latencia en todo momento.</p>
+      </div>
+    </div>
+    <div class="vault-cta">
+      <a href="#contacto" class="btn-vault-pill shimmer-btn">
+        CONOCER SYMMETRICAL CLOUD
+      </a>
+    </div>
+  </div>
+</section>
 
   <!-- 🔷 SECCIÓN CONTACTO -->
   <section id="contacto" class="service-box reveal">
@@ -205,7 +242,7 @@
     <p>&copy; 2026 Symmetrical Studios. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- 🔷 BOTÓN FLOTANTE NATIVO GLASSMORPHISM WHATSAPP -->
+  <!-- 🔷 BOTÓN FLOTANTE WHATSAPP -->
   <a href="https://wa.me/573112246361?text=Hola%20Symmetrical%2C%20quiero%20cotizar%20un%20proyecto" 
      target="_blank" 
      rel="noopener" 
@@ -246,7 +283,6 @@
           <input type="email" id="vault-email" placeholder="tu@email.com" required />
         </div>
 
-        <!-- Selector de Planes justo antes del botón de pago -->
         <div class="form-group">
           <label>Plan</label>
           <div class="custom-dropdown" id="dropdown-planes">

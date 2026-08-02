@@ -77,26 +77,42 @@ header {
   transform: scale(1.03);
 }
 
-/* 🔷 Navegación y Animación de Enlaces */
-nav ul {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
+/* 🔷 Navegación Desktop (Organizado a la derecha y sin píldoras) */
+header nav {
+  margin-left: auto;
 }
 
-nav a {
-  color: rgba(255, 255, 255, 0.7);
+nav ul {
+  display: flex !important;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-vault,
+.nav-cloud {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   position: relative;
-  padding: 5px 0;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-nav a::after {
+.nav-vault::after,
+.nav-cloud::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -109,36 +125,36 @@ nav a::after {
   transform: translateX(-50%);
 }
 
-nav a:hover {
+.nav-vault:hover,
+.nav-cloud:hover {
   color: #ffffff;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
 }
 
-nav a:hover::after {
+.nav-vault:hover::after,
+.nav-cloud:hover::after {
   width: 100%;
 }
 
-/* 🔷 Botón Symmetrical Vault en Nav (PC) */
-nav a.nav-vault {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+/* Íconos dentro de los enlaces del Navbar */
+.nav-vault .vault-icon,
+.nav-cloud .vault-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.nav-vault:hover .vault-icon,
+.nav-cloud:hover .vault-icon {
+  transform: scale(1.15) rotate(-3deg);
 }
 
 /* 🔷 Ocultar botón móvil en PC */
 .btn-vault-mobile {
   display: none;
-}
-
-.vault-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  border-radius: 4px;
-  transition: transform 0.3s ease;
-}
-
-nav a.nav-vault:hover .vault-icon {
-  transform: scale(1.15) rotate(-3deg);
 }
 
 /* 🔷 Separadores */
@@ -242,17 +258,14 @@ nav a.nav-vault:hover .vault-icon {
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Animación de latido continua */
   animation: borderPulse 2.5s infinite ease-in-out;
 }
 
-/* Transición suave para la flechita */
 .pulse-btn .btn-arrow {
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-/* 🔷 Animación del Latido / Resplandor */
 @keyframes borderPulse {
   0% {
     border-color: rgba(255, 255, 255, 0.2);
@@ -267,28 +280,26 @@ nav a.nav-vault:hover .vault-icon {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
   }
 }
-/* 🔷 Efecto Liquid Glass Forzado al pasar el mouse */
+
 .pulse-btn:hover {
-  background: rgba(255, 255, 255, 0.1) !important; /* Transparente cristal */
-  color: #ffffff !important;                        /* Texto blanco */
-  border-color: rgba(255, 255, 255, 0.7) !important;/* Borde fino con brillo */
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
   
-  /* Cristal y Difuminado */
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   
-  /* Elevación y Resplandor sutil */
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.15),
               inset 0 0 15px rgba(255, 255, 255, 0.1) !important;
   
-  animation: none !important; /* Detiene el latido */
+  animation: none !important;
 }
 
-/* Movimiento de la flecha al pasar el mouse */
 .pulse-btn:hover .btn-arrow {
   transform: translateX(4px);
 }
+
 .btn-glow-secondary {
   display: inline-flex;
   align-items: center;
@@ -305,6 +316,7 @@ nav a.nav-vault:hover .vault-icon {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .btn-glow-secondary:hover {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.4);
@@ -321,12 +333,11 @@ nav a.nav-vault:hover .vault-icon {
   margin-bottom: 30px;
 }
 
-/* Estado Base (Inactivo) */
 .tab-glow-btn {
   padding: 12px 32px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.03); 
-  color: rgba(255, 255, 255, 0.5); /* Texto atenuao */
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.95rem;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.1); 
@@ -336,21 +347,18 @@ nav a.nav-vault:hover .vault-icon {
   outline: none;
 }
 
-/* Hover en inactivo */
 .tab-glow-btn:hover {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Estado Activo (.active) */
 .tab-glow-btn.active {
-  background: rgba(255, 255, 255, 0.15); /* Un pelito más clarito el fondo */
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
   font-weight: 600;
-  border-color: rgba(255, 255, 255, 0.9); /* Borde blanco bien vivo */
+  border-color: rgba(255, 255, 255, 0.9);
   
-  /* Resplandor elegante alrededor */
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.25),
               inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
@@ -366,10 +374,10 @@ nav a.nav-vault:hover .vault-icon {
 }
 
 .tab-subtitle {
-  text-align: center;      /* 👈 Centra el texto */
-  width: 100%;             /* 👈 Ocupa todo el ancho */
-  max-width: 600px;        /* Opcional: para que no quede tan ancho */
-  margin: 10px auto 30px;  /* 👈 "auto" a los lados lo centra como bloque */
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto 30px;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -635,7 +643,101 @@ nav a.nav-vault:hover .vault-icon {
   transform: translateY(-3px);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
+/* ==========================================
+   🔷 SECCIÓN SYMMETRICAL CLOUD
+   ========================================== */
+.cloud-section, 
+#cloud {
+  position: relative;
+  padding: 4.5rem 1.5rem;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, rgba(5, 5, 5, 1) 75%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+#cloud-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.cloud-container {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+/* ==========================================
+   ✨ TÍTULO DINÁMICO EN SYMMETRICAL CLOUD
+   ========================================== */
+.cloud-dynamic-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dynamic-word-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px; /* Evita que el texto de al lado brinque */
+  height: 1.4em;
+  position: relative;
+  vertical-align: middle;
+}
+
+.dynamic-word {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Estado cuando sale la palabra/ícono */
+.dynamic-word.fade-out {
+  opacity: 0;
+  transform: translateY(-12px);
+  filter: blur(4px);
+}
+
+/* Estado cuando entra la nueva palabra/ícono */
+.dynamic-word.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(4px);
+}
+
+/* Estilo especial con brillo para la palabra final "Cloud" */
+.dynamic-word.highlight-cloud {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
 /* 🔷 Tarjeta de Contacto */
 .contact-card {
   width: 480px;
@@ -752,7 +854,6 @@ html {
    📱 RESPONSIVE DESIGN (PC Y TABLET)
    ========================================== */
 
-/* 1. Pantallas grandes (A partir de 1440px) */
 @media (min-width: 1440px) {
   body { font-size: 18px; }
   .hero-content, .service-box, .contact-card {
@@ -761,7 +862,6 @@ html {
   }
 }
 
-/* 2. Tablets (769px a 1024px) */
 @media (max-width: 1024px) {
   .sub-services-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -776,13 +876,11 @@ html {
 @media (max-width: 768px) {
   header { padding: 0.8rem 1.2rem; }
 
-  /* Ocultar menú normal de PC y la hamburguesa */
   header nav,
   .menu-toggle {
     display: none !important;
   }
 
-  /* Botón de Symmetrical Vault visible únicamente en móvil */
   .btn-vault-mobile {
     display: flex !important;
     align-items: center;
@@ -808,8 +906,39 @@ html {
 
   .hero h1 { font-size: 1.8rem; line-height: 1.2; }
   .hero p { font-size: 0.95rem; }
-  .hero-buttons { flex-direction: column; width: 100%; }
-  .hero-buttons .btn { width: 100%; text-align: center; }
+  
+  .hero-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .btn-hero-capsule {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px !important;
+    font-size: 0.85rem !important;
+    border-radius: 9999px !important;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  h2.separador {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+    padding: 0 10px !important;
+    display: block !important;
+  }
+
+  h2.separador::before,
+  h2.separador::after {
+    display: none !important;
+  }
 
   .service, .contact-card { width: 100%; }
   .sub-services-grid { grid-template-columns: 1fr; gap: 1.2rem; }
@@ -1262,42 +1391,5 @@ body {
   .whatsapp-pill-float {
     bottom: 70px;
     right: 16px;
-  }
-}
-@media (max-width: 768px) {
-  .hero-buttons {
-    display: flex !important;
-    flex-direction: row !important; /* Mantiene la fila horizontal */
-    justify-content: center;
-    align-items: center;
-    gap: 10px;                     /* Espaciado uniforme */
-    width: 100%;
-  }
-
-  .btn-hero-capsule {
-    flex: 1;                       /* Fuerza a ambos botones a compartir el mismo ancho */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 16px !important;  /* Relleno identico para igualar la altura */
-    font-size: 0.85rem !important;  /* Ajusta el texto para que no rompa la fila */
-    border-radius: 9999px !important;
-    white-space: nowrap;
-    text-align: center;
-  }
-}
-/* 🔷 Corrección de alineación del título en celulares */
-@media (max-width: 768px) {
-  h2.separador {
-    font-size: 1.2rem !important;  /* Reducimos un pelito el texto para que quepa bien */
-    text-align: center !important;  /* Aseguramos centrado total */
-    padding: 0 10px !important;
-    display: block !important;
-  }
-
-  /* Ocultamos las rayitas decorativas laterales solo en celular para que no descuadren el texto */
-  h2.separador::before,
-  h2.separador::after {
-    display: none !important;
   }
 }
